@@ -32,10 +32,10 @@ const HEART_COUNT = 40;
 const SCREENS = [
   { type: 'text', content: 'Desde que tengo memoria, has sido mi gran inspiración.' },
   { type: 'text', content: 'Quiero que sepas que te quiero muchísimo y estoy muy orgulloso de ti.' },
-  { type: 'photo', image: '/foto1.jpg', content: '📸 [Asegúrate de tener foto1.jpg en la carpeta public]' },
+  { type: 'photo', image: '/foto1.jpeg', content: '📸 [Asegúrate de tener foto1.jpg en la carpeta public]' },
   { type: 'text', content: 'Gracias por estar siempre ahí, en las buenas y en las malas.' },
   { type: 'text', content: 'Eres una persona increíble y mereces todo lo bonito que te pase hoy y siempre.' },
-  { type: 'photo', image: '/foto2.jpg', content: '📸 [Asegúrate de tener foto2.jpg en la carpeta public]' },
+  { type: 'photo', image: '/foto2.jpeg', content: '📸 [Asegúrate de tener foto2.jpg en la carpeta public]' },
   { type: 'text', content: 'Nunca olvides lo mucho que te adoro, Alejandra.' },
   { type: 'final' } // Triggers heart animation
 ];

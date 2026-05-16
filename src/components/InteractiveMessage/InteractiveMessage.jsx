@@ -153,7 +153,7 @@ function InteractiveMessage({ onReady }) {
 
         {/* ── Interactive Message Block ── */}
         <div className="cat-section__message glass-card" id="cat-message-block">
-          <p className="cat-section__message-greeting">¡Hola hermanita! 👋</p>
+          <p className="cat-section__message-greeting">Felicidades Ale</p>
           <p className="cat-section__message-question">
             ¿Lista para leer tu regalo?
           </p>
@@ -165,7 +165,7 @@ function InteractiveMessage({ onReady }) {
             disabled={isExiting}
           >
             <span className="cat-section__btn-text">¡Estoy lista!</span>
-            <span className="cat-section__btn-icon" aria-hidden="true">🎁</span>
+            <span className="cat-section__btn-icon" aria-hidden="true"></span>
             <span className="cat-section__btn-shine" aria-hidden="true" />
           </button>
         </div>
