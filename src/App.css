@@ -1,0 +1,187 @@
+/* ============================================================
+   App.css — Main Application Layout
+   ============================================================ */
+
+/* ---------- App Container ---------- */
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ---------- Starfield Background ---------- */
+.app__starfield {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-background);
+  background: var(--gradient-hero);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.app__starfield--visible {
+  opacity: 1;
+}
+
+/* Procedural stars via pseudo-elements */
+.app__starfield::before,
+.app__starfield::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.app__starfield::before {
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(192, 132, 252, 0.6), transparent),
+    radial-gradient(1px 1px at 55% 60%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 70% 25%, rgba(249, 168, 212, 0.5), transparent),
+    radial-gradient(1px 1px at 85% 45%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 15% 75%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 30% 90%, rgba(103, 232, 249, 0.4), transparent),
+    radial-gradient(1px 1px at 50% 80%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 65% 95%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 80% 70%, rgba(192, 132, 252, 0.5), transparent),
+    radial-gradient(1px 1px at 95% 85%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 5% 50%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 35% 55%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1.5px 1.5px at 90% 15%, rgba(249, 168, 212, 0.4), transparent),
+    radial-gradient(1px 1px at 20% 5%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 60% 40%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 75% 55%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 45% 70%, rgba(103, 232, 249, 0.3), transparent),
+    radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.4), transparent);
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.app__starfield::after {
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 28% 48%, rgba(192, 132, 252, 0.4), transparent),
+    radial-gradient(1px 1px at 42% 18%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 58% 72%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1.5px 1.5px at 72% 38%, rgba(249, 168, 212, 0.4), transparent),
+    radial-gradient(1px 1px at 88% 58%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 18% 82%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 33% 12%, rgba(103, 232, 249, 0.3), transparent),
+    radial-gradient(1px 1px at 52% 92%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 68% 8%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 82% 78%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 8% 42%, rgba(192, 132, 252, 0.3), transparent),
+    radial-gradient(1px 1px at 48% 32%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 62% 52%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1.5px 1.5px at 78% 88%, rgba(249, 168, 212, 0.5), transparent),
+    radial-gradient(1px 1px at 22% 68%, rgba(255, 255, 255, 0.6), transparent);
+  animation: twinkle 8s ease-in-out infinite reverse;
+  opacity: 0.6;
+}
+
+/* Ambient glow orb */
+.app__glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, 90vw);
+  height: min(600px, 90vw);
+  background: radial-gradient(
+    circle,
+    rgba(192, 132, 252, 0.08) 0%,
+    rgba(103, 232, 249, 0.04) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: var(--z-stars);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  animation: float 12s ease-in-out infinite;
+}
+
+.app__glow--visible {
+  opacity: 1;
+}
+
+/* ---------- Content Wrapper ---------- */
+.app__content {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Section Wrapper (transition container) ---------- */
+.app__section {
+  width: 100%;
+  animation: sectionFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Section Base Styles ---------- */
+.section {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  position: relative;
+}
+
+/* Desktop: constrain content width */
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app__content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+}
+
+@media (min-width: 1440px) {
+  .app__content {
+    max-width: 1400px;
+  }
+}
+
+/* ---------- Section Divider ---------- */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-accent);
+  border: none;
+  border-radius: var(--radius-full);
+  margin: var(--space-lg) auto;
+  opacity: 0.5;
+}

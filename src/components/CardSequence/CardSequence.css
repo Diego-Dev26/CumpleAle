@@ -1,0 +1,169 @@
+/* ============================================================
+   PhotoGallery — Section 3 Styles
+   Sequential screens + Heart Animation
+   ============================================================ */
+
+/* ---------- Section Container ---------- */
+.gallery {
+  position: relative;
+  gap: var(--space-xl);
+  perspective: 1200px;
+  overflow: hidden;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCREENS (Phases 1-7)
+   ════════════════════════════════════════════════════════════ */
+.screen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  gap: var(--space-lg);
+  cursor: pointer;
+  padding: var(--space-2xl) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+}
+
+.screen-card--entering {
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+}
+
+.screen-card--entered {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.screen-card--exiting {
+  transform: translateY(-30px) scale(1.05);
+  opacity: 0;
+}
+
+.screen-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+}
+
+.screen-card__text {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.screen-card__photo-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  padding: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.screen-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-md) - 4px);
+}
+
+.screen-card__photo-text {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  font-weight: bold;
+}
+
+.screen-card__hint {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: var(--space-lg);
+  animation: pulseHint 2s infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   HEART SCENE (Phase 8): Ring → Spiral → Heart
+   ════════════════════════════════════════════════════════════ */
+.heart-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 1s ease-out;
+}
+
+/* ── Photos container (centered) ── */
+.heart-scene__container {
+  position: relative;
+  width: clamp(300px, 80vw, 500px);
+  height: clamp(300px, 80vw, 500px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-scene__container--pulse {
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.1); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.05); }
+}
+
+/* ── Individual particle (emoji) ── */
+.heart-scene__particle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(249, 168, 212, 0.6));
+  will-change: transform;
+}
+
+/* ── Footer (after heart) ── */
+.heart-scene__footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  animation: fadeInUp 1s ease-out;
+}
+
+.heart-scene__footer-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: bold;
+}
